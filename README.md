@@ -9,6 +9,7 @@ Original code (ikuti tutorial dari video ini): https://www.youtube.com/watch?v=p
  1. Download kode yang ada di repositori GitHub ini (tombol Code, lalu Download ZIP), kemudian ekstrak.
  2. Buat Google Sheets baru dan pasang Google Apps Script sesuai tutorial video di atas, lalu salin URL Deployment-nya.
  3. Masukkan URL script tersebut ke dalam variabel scriptURL di dalam kode ESP32, sesuaikan daftar nama dan UID siswa, lalu upload kodenya ke ESP32.
+
  
 2. Pakai website
 Link website trial: https://absensi-mfrc.netlify.app/
