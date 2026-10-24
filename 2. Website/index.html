@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Presensi Sholat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <img class="brand-logo" alt="UBAH LOGO SEKOLAH" width="36" height="38"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 38'%3E%3Cpath d='M18 1.5 33 7v10.5c0 9-6.3 15.2-15 18.5C9.3 32.7 3 26.5 3 17.5V7z' fill='%230E6F66'/%3E%3Cpath d='M18 14.5c-2.4-1.7-5.6-2.2-8.5-1.6v10.6c2.9-.6 6.1-.1 8.5 1.6 2.4-1.7 5.6-2.2 8.5-1.6V12.9c-2.9-.6-6.1-.1-8.5 1.6z' fill='%23fff'/%3E%3Cpath d='M18 14.5v11' stroke='%230E6F66' stroke-width='1.2'/%3E%3Ccircle cx='18' cy='8.6' r='2' fill='%23F2B04A'/%3E%3C/svg%3E">
+      <div>
+        <h1>Presensi Sholat</h1>
+        <p class="school">UBAH NAMA SEKOLAH</p>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Menu utama">
+      <button class="tab" role="tab" id="t-today" aria-controls="tab-today" aria-selected="true" data-tab="today">Hari Ini</button>
+      <button class="tab" role="tab" id="t-history" aria-controls="tab-history" aria-selected="false" data-tab="history">Riwayat</button>
+      <button class="tab" role="tab" id="t-profile" aria-controls="tab-profile" aria-selected="false" data-tab="profile">Profil</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="panel" id="tab-today" role="tabpanel" aria-labelledby="t-today">
+      <div class="today">
+        <div class="col">
+          <div class="card next" id="next-card">
+            <p class="eyebrow" id="next-eyebrow">Sholat Dzuhur</p>
+            <p class="dateline" id="dateline"></p>
+            <div class="next-row">
+              <h2 class="next-name" id="next-name">Dzuhur</h2>
+              <p class="next-count" id="next-count">--:--</p>
+            </div>
+            <p class="next-note" id="next-note"></p>
+          </div>
+
+          <div class="card">
+            <div class="reader-head">
+              <h3>Pembaca kartu MFRC522</h3>
+              <span class="rd-chip" id="rd-chip"><i class="dot"></i><span id="rd-chip-text">Belum terhubung</span></span>
+            </div>
+            <div class="pad" id="pad">
+              <svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="14" y="30" width="46" height="30" rx="5"/>
+                <path d="M14 40h46"/>
+                <path d="M21 52h12"/>
+                <path class="wave w1" d="M66 38c3 3 3 9 0 12"/>
+                <path class="wave w2" d="M72 33c6 6 6 17 0 23"/>
+                <path class="wave w3" d="M78 28c9 9 9 25 0 34"/>
+              </svg>
+              <p class="pad-msg" id="pad-msg">Tempelkan kartu pelajar ke pembaca</p>
+            </div>
+            <div class="reader-actions">
+              <button class="btn primary" id="rd-connect" type="button">Hubungkan pembaca</button>
+              <button class="btn" id="rd-sim" type="button">Simulasi tap kartu</button>
+              <button class="btn ghost" id="rd-sim-bad" type="button">Simulasi kartu asing</button>
+            </div>
+            <p class="hint" id="rd-hint">Colokkan Arduino atau ESP32 yang terpasang MFRC522 lewat USB, lalu tekan Hubungkan pembaca dan pilih port-nya. Pakai Chrome atau Edge di komputer. Tombol simulasi bekerja tanpa perangkat.</p>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <div class="list-head">
+              <h2>Catatan tap hari ini</h2>
+              <p class="eyebrow" id="log-count">0 tap</p>
+            </div>
+            <ul class="log" id="log-list"></ul>
+            <div class="list-foot">
+              <a class="btn small ghost" href="#UBAH-LINK-INI">Lihat panduan wudhu dan sholat</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="tab-history" role="tabpanel" aria-labelledby="t-history" hidden>
+      <div class="card">
+        <div class="sum">
+          <div>
+            <p class="eyebrow">4 minggu terakhir · Senin sampai Jumat</p>
+            <h2>Kehadiran sholat Dzuhur</h2>
+          </div>
+          <p class="pct" id="pct">0%</p>
+        </div>
+        <p class="foot-note" id="hist-sum" style="margin-bottom:12px"></p>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr">Riwayat sholat Dzuhur empat minggu terakhir pada hari sekolah</caption>
+            <thead><tr><th scope="col">Minggu</th><th scope="col">Sen</th><th scope="col">Sel</th><th scope="col">Rab</th><th scope="col">Kam</th><th scope="col">Jum</th></tr></thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+        <div class="legend">
+          <span><i class="mark yes"></i> Tap kartu tercatat</span>
+          <span><i class="mark no"></i> Tidak tercatat</span>
+          <span><i class="mark wait"></i> Belum tiba</span>
+        </div>
+        <div class="card-foot">
+          <p class="foot-note" id="note-contoh">Data contoh: semua hari sekolah sampai hari ini sudah terisi.</p>
+          <a class="btn" href="#UBAH-LINK-INI">Unduh rekap mingguan</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="tab-profile" role="tabpanel" aria-labelledby="t-profile" hidden>
+      <div class="profile">
+        <div class="card">
+          <div class="who">
+            <div class="who-main">
+              <div class="avatar" aria-hidden="true">UB</div>
+              <div style="min-width:0">
+                <h2>UBAH NAMA SISWA</h2>
+                <div class="badges">
+                  <span class="badge">UBAH KELAS</span>
+                  <span class="badge">UBAH NIS</span>
+                  <span class="badge good">Kartu aktif</span>
+                </div>
+              </div>
+            </div>
+            <a class="btn primary" href="#UBAH-LINK-INI">Ubah data diri</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:18px;margin-bottom:6px">Data siswa</h3>
+          <dl>
+            <div class="field"><div><dt>Nama lengkap</dt><dd>UBAH NAMA SISWA</dd></div></div>
+            <div class="field"><div><dt>NISN</dt><dd class="mono">UBAH NISN</dd></div></div>
+            <div class="field"><div><dt>Tempat, tanggal lahir</dt><dd>UBAH TEMPAT, TANGGAL LAHIR</dd></div></div>
+            <div class="field"><div><dt>Kartu RFID (UID)</dt><dd class="mono" id="uid-view">UBAH UID KARTU</dd></div></div>
+            <div class="field">
+              <div><dt>Wali kelas</dt><dd>UBAH NAMA WALI KELAS</dd></div>
+              <a class="btn small" href="#UBAH-LINK-INI">Hubungi</a>
+            </div>
+            <div class="field">
+              <div><dt>Guru PAI</dt><dd>UBAH NAMA GURU PAI</dd></div>
+              <a class="btn small" href="#UBAH-LINK-INI">Hubungi</a>
+            </div>
+            <div class="field"><div><dt>Kontak orang tua</dt><dd class="mono">UBAH NOMOR ORANG TUA</dd></div></div>
+            <div class="field"><div><dt>Tahun ajaran</dt><dd>UBAH TAHUN AJARAN</dd></div></div>
+          </dl>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:18px;margin-bottom:12px">Ringkasan ibadah</h3>
+          <div class="stats">
+            <div class="stat"><b id="st-week">0%</b><span>Kehadiran 4 minggu</span></div>
+            <div class="stat"><b id="st-streak">0</b><span>Hari sekolah berurutan</span></div>
+            <div class="stat"><b id="st-today">–</b><span>Tap Dzuhur hari ini</span></div>
+          </div>
+          <div class="actions" style="margin-top:16px">
+            <a class="btn" href="#UBAH-LINK-INI">Unduh kartu ibadah</a>
+            <a class="btn" href="#UBAH-LINK-INI">Lihat jadwal piket mushola</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+function doGet(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(["Time", "Name"]);
+  }
+
+  var name = (e && e.parameter && e.parameter.name) ? e.parameter.name : "Unknown";
+  var timestamp = Utilities.formatDate(new Date(), "Asia/Jakarta", "yyyy-MM-dd HH:mm:ss");
+
+  sheet.appendRow([timestamp, name]);
+
+  return ContentService.createTextOutput("Success");
+}
