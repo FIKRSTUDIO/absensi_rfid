@@ -1,4 +1,5 @@
 # CoreTap - ESP32 RFID Attendance System
+<img width="2448" height="3264" alt="IMG_20261023_151326" src="https://github.com/user-attachments/assets/5a4334fc-d58b-4d96-a762-ec8a79467a90" />
 
 *Bahan-Bahan*: MFRC522, I2C 16x2 LCD, dan ESP32
 Skematik dari rancangan absensi ini:
